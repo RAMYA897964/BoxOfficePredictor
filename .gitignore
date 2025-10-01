@@ -1,0 +1,87 @@
+# -----------------------------
+# 🐍 Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.log
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+*.ipynb
+
+# Model artifacts
+*.joblib
+*.pkl
+*.h5
+*.sav
+
+# Data files
+data/
+*.csv
+*.xlsx
+*.parquet
+
+# -----------------------------
+# 🌐 Streamlit
+# -----------------------------
+.streamlit/
+logs/
+cache/
+
+# -----------------------------
+# ⚡ FastAPI
+# -----------------------------
+# (If you create temp files for testing or uvicorn reload)
+*.sqlite3
+*.db
+
+# -----------------------------
+# 🐳 Docker
+# -----------------------------
+# Ignore files created during Docker builds
+**/__pycache__/
+**/*.pyc
+.dockerignore
+Dockerfile~
+
+# -----------------------------
+# 📝 Environment & Secrets
+# -----------------------------
+.env
+*.env
+secrets.json
+
+# -----------------------------
+# 🧪 Tests & Coverage
+# -----------------------------
+.coverage
+htmlcov/
+pytest_cache/
+
+# -----------------------------
+# 🛠️ IDE & System files
+# -----------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.bak
+*.swp
+*.tmp
+
+# -----------------------------
+# 📦 Node (if you add frontend later)
+# -----------------------------
+node_modules/
+dist/
+build/
+
