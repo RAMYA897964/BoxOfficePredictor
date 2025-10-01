@@ -1,8 +1,13 @@
 import streamlit as st
 import requests
+import os
 
 # --- App title ---
 st.title("🎬 Box Office Predictor")
+
+# --- Backend URL (read from environment, fallback to localhost) ---
+backend_url = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
+
 
 # --- User inputs ---
 genre = st.selectbox("Genre", ["Action", "Comedy", "Drama", "Horror", "Romance", "Thriller", "Others"])
@@ -26,7 +31,7 @@ if st.button("Predict Box Office"):
 
     try:
         # Call backend API
-        response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+        response = requests.post(f"{backend_url}/predict", json=payload)
         response.raise_for_status()
         data = response.json()
 

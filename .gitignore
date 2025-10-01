@@ -19,7 +19,7 @@ ENV/
 *.ipynb
 
 # Model artifacts
-*.joblib
+
 *.pkl
 *.h5
 *.sav
