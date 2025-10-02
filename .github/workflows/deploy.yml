@@ -1,0 +1,38 @@
+name: 🚀 Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main  # this means it runs when you push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Add SSH key
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Clean old code on EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          cd ~/app
+          rm -rf ./*
+          EOF
+
+      - name: Copy project to EC2
+        run: |
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/app
+
+      - name: Build and run Docker containers
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+          cd ~/app
+          docker-compose down || true
+          docker-compose up -d --build
+          EOF
