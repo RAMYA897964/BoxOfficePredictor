@@ -28,7 +28,7 @@ ENV/
 data/
 *.csv
 *.xlsx
-*.parquet
+
 
 # -----------------------------
 # 🌐 Streamlit
